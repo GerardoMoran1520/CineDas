@@ -1,0 +1,37 @@
+﻿@model CineProyecto.Models.DTO.MovieListVm
+@{
+}
+<div class="tbl-container">
+    <h2>Movies</h2>
+
+    <table>
+        <tr>
+            <th>TITULO</th>
+            <th>GENERO</th>
+            <th>IMAGEN</th>
+            <th>SINOPSIS</th>
+            <th>DIRECTOR</th>
+            <th>ACCION</th>
+        </tr>
+        @foreach (var item in Model.MovieList)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.GenreNames</td>
+        
+                <td><img style="height:100px;width:90px" src="/Uploads/@item.MovieImage" /></td>
+                <td>@item.Sinopsis</td>
+                <td>@item.Director</td>
+                <td>
+                    <a href="/Movie/Edit?id=@item.Id" class="btn btn-sec"><i class="fa fa-edit"></i></a>
+                    <a onclick="return window.confirm('Estas seguro de eliminar?')" href="/Movie/Delete?id=@item.Id" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <center>
+        <a href="/Movie/Add" class="btn btn-sec">Regresar</a>
+    </center>
+   
+</div>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<CineProyecto.Models.Domain.Genre>
+@{
+}
+<center>
+<div class="tbl-container">
+    <h2>GENEROS</h2>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Accion</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.GenreName</td>
+                <td>
+                    <a href="/Genre/Edit?id=@item.Id" class="btn btn-sec"><i class="fa fa-edit"></i></a>
+                    <a onclick="return window.confirm('Estás seguro de eliminar este genero?')" href="/Genre/Delete?id=@item.Id" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div class="input-container">
+        <a href="/Genre/Add" class="btn btn-sec">Regresar</a>
+    </div>
+</div>
+</center>

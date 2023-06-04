@@ -1,0 +1,48 @@
+﻿@model CineProyecto.Models.DTO.MovieListVm
+
+@{
+    Layout = "_Layout";
+}
+<center>
+    <section class="search-bar">
+        <form method="get" asp-action="Index">
+            <input type="text" name="term" placeholder="Busca tu pelicula aquí">
+            <button type="submit"><i class="fa fa-search"></i></button>
+            <a class="btn btn-danger" href="/Home/Index">Todas</a>
+        </form>
+    </section>
+    <br>
+    <br>
+</center>
+<section class="movies">
+    @foreach(var movie in Model.MovieList){
+        <div class="movie-card" onclick="window.location.href='/Home/MovieDetail?movieId=@movie.Id'">
+        <div class="movie-image">
+            <img src="/Uploads/@movie.MovieImage">
+        </div>
+        
+            <h4>@movie.Title </h4>
+            <h5>@movie.GenreNames</h5>
+            
+      
+    </div>
+    }
+    
+</section>
+<br>
+<br>
+<div class="pagination">
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        if (i == Model.CurrentPage)
+        {
+            <a href="/Home/Index?currentPage=@i&term=@Model.Term" class="active">@i</a>
+        }
+        else
+        {
+            <a href="/Home/Index?currentPage=@i&term=@Model.Term">@i</a>
+
+        }
+    }
+
+</div>
